@@ -88,8 +88,8 @@ abstract contract NexusBridge is INexusBridge {
         emit RewardsUpdated(amount, slashed);
     }
 
-    function redeemRewards(uint256 amount) external onlyDAO {
-        amount = stakingReturns.TotalRewardsEarned -
+    function redeemRewards() external onlyDAO {
+        uint256 amount = stakingReturns.TotalRewardsEarned -
                 stakingReturns.RewardsRedeemed -
                 stakingReturns.Slashing;
         (bool success, bytes memory nexusData) = DAO.call{
